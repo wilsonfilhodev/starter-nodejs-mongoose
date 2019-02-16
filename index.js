@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const requireDir = require("require-dir");
 const cors = require("cors");
 
+requireDir("./src/models");
+
 // START APP
 const app = express();
 app.use(express.json());
@@ -10,10 +12,11 @@ app.use(cors());
 
 // CONECT DB
 
-mongoose.connect("mongodb://root:root1234@ds137255.mlab.com:37255/example-api-nodejs",
+/* Set data of connection with DB
+* Example: "mongodb://root:root@localhost:37027/starter-nodejs-mongoose"
+*/
+mongoose.connect("mongodb://<user>:<password>@<url:port>/<name_db>",
 { useNewUrlParser: true });
-
-requireDir("./src/models");
 
 // INITIALIZE ROUTES
 app.use("/api", require("./src/routes"));
